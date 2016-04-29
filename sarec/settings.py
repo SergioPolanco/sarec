@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'administrator',
+    'accounts',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -129,3 +130,6 @@ STATICFILES_DIRS = (
 
 LOGIN_URL = '/administrator/login/'
 LOGOUT_URL = '/administrator/logout/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'

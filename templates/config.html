@@ -182,7 +182,7 @@
                 </div>
 
                 <ul class="nav nav-list">
-                    <li class="active">
+                    <li class="">
                         <a href="index.html">
                             <i class="menu-icon fa fa-tachometer"></i>
                             <span class="menu-text"> Inicio </span>
@@ -554,71 +554,14 @@
                     </li>
 
                     <li class="">
-                        <a href="#" class="dropdown-toggle">
-                            <i class="menu-icon fa fa-file-o"></i>
-
-                            <span class="menu-text">
-                                Other Pages
-
-                                <!-- #section:basics/sidebar.layout.badge -->
-                                <span class="badge badge-primary">5</span>
-
-                                <!-- /section:basics/sidebar.layout.badge -->
-                            </span>
-
-                            <b class="arrow fa fa-angle-down"></b>
+                        <a href="/administrator/accounts/">
+                            <i class="menu-icon fa fa-users"></i>
+                            <span class="menu-text"> Cuentas de Usuarios </span>
                         </a>
-
                         <b class="arrow"></b>
-
-                        <ul class="submenu">
-                            <li class="">
-                                <a href="faq.html">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    FAQ
-                                </a>
-
-                                <b class="arrow"></b>
-                            </li>
-
-                            <li class="">
-                                <a href="error-404.html">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    Error 404
-                                </a>
-
-                                <b class="arrow"></b>
-                            </li>
-
-                            <li class="">
-                                <a href="error-500.html">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    Error 500
-                                </a>
-
-                                <b class="arrow"></b>
-                            </li>
-
-                            <li class="">
-                                <a href="grid.html">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    Grid
-                                </a>
-
-                                <b class="arrow"></b>
-                            </li>
-
-                            <li class="">
-                                <a href="blank.html">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    Blank Page
-                                </a>
-
-                                <b class="arrow"></b>
-                            </li>
-                        </ul>
                     </li>
-                </ul><!-- /.nav-list -->
+
+                </ul>
 
                 <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
                     <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
@@ -640,7 +583,7 @@
                             <i class="ace-icon fa fa-home home-icon"></i>
                             <a href="#">SAREC</a>
                         </li>
-                        <li class="active">Inicio</li>
+                        <li class="active">{% block breadcrumbs %}Inicio{% endblock breadcrumbs %}</li>
                     </ul>
                 </div>
 
@@ -648,10 +591,11 @@
                     <div class="page-content-area">
                         <div class="page-header">
                             <h1>
-                                Dashboard
+                                {% block titlepage %}Dashboard{% endblock titlepage %}
+
                                 <small>
                                     <i class="ace-icon fa fa-angle-double-right"></i>
-                                    Descripción general &amp; estadísticas
+                                    {% block description %}Descripción general &amp; estadísticas{% endblock description %}
                                 </small>
                             </h1>
                         </div>
