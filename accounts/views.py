@@ -7,5 +7,5 @@ from django.core.urlresolvers import reverse
 from django.conf import settings
 
 @login_required
-def profile_view(request):
-    return render(request, 'accounts/index.html')
+def profile_add_view(request):
+    return render(request, 'accounts/add.html')

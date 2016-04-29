@@ -183,7 +183,7 @@
 
                 <ul class="nav nav-list">
                     <li class="">
-                        <a href="index.html">
+                        <a href="/administrator/">
                             <i class="menu-icon fa fa-tachometer"></i>
                             <span class="menu-text"> Inicio </span>
                         </a>
@@ -554,13 +554,29 @@
                     </li>
 
                     <li class="">
-                        <a href="/administrator/accounts/">
+                        <a href="#" class="dropdown-toggle">
                             <i class="menu-icon fa fa-users"></i>
-                            <span class="menu-text"> Cuentas de Usuarios </span>
+                            <span class="menu-text"> Usuarios </span>
+                            <b class="arrow fa fa-angle-down"></b>
                         </a>
                         <b class="arrow"></b>
+                        <ul class="submenu">
+                            <li class="">
+                                <a href="/administrator/accounts/">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Agregar
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="">
+                                <a href="inbox.html">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Modificar
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                        </ul>
                     </li>
-
                 </ul>
 
                 <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
@@ -592,7 +608,6 @@
                         <div class="page-header">
                             <h1>
                                 {% block titlepage %}Dashboard{% endblock titlepage %}
-
                                 <small>
                                     <i class="ace-icon fa fa-angle-double-right"></i>
                                     {% block description %}Descripción general &amp; estadísticas{% endblock description %}
