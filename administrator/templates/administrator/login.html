@@ -33,7 +33,7 @@
             <form name="form-access" method="post" action="">
                 {% csrf_token %}
                 <div class="form-group margin-top-30">
-                    <input autocomplete="off" type="text" name="username" value="" placeholder="Nombre de Usuario" class="form-control no-border-radius notnull">
+                    <input autocomplete="off" type="text" name="username" value="{{ username }}" placeholder="Nombre de Usuario" class="form-control no-border-radius notnull">
                 </div>
                 <div class="form-group margin-top-5">
                     <input autocomplete="off" type="password" name="password" value="" placeholder="Contraseña" class="form-control no-border-radius notnull">
