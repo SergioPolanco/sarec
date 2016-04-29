@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
@@ -28,3 +28,7 @@ def login_view(request):
                 pass
         mensaje = 'Usuario y/o contraseña incorrecta.'
     return render(request, 'administrator/login.html', {'mensaje': mensaje})
+
+def logout_view(request):
+    logout(request)
+    return redirect(reverse('administrator.login'))

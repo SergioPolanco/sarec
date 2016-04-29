@@ -127,7 +127,7 @@
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a href="#">
+                                    <a href="{% url 'administrator.logout' %}">
                                         <i class="ace-icon fa fa-power-off"></i>
                                         Salir
                                     </a>
@@ -703,7 +703,7 @@
         <script type="text/javascript" src="{% static 'js/sarec/jquery.ui.touch-punch.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/sarec/ace-elements.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/sarec/ace.min.js' %}"></script>
-        
+
         {% block script %}
         {% endblock script %}
     </body>
