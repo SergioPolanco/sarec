@@ -13,7 +13,9 @@ $(document).ready(function() {
             contentType: false,
             processData: false,
             success: function(data) {
-                console.log(data);
+                  //var result = JSON.parse(data);
+                    //console.log(typeof(data));
+                    alert(data.message);
             },
             error: function (XMLHttpRequest, estado, errorS) {
               var error = eval("(" + XMLHttpRequest.responseText + ")");

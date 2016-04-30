@@ -10,9 +10,11 @@ from django.http import HttpResponse
 from django.core import serializers
 from django.utils import timezone
 from django.views.generic import TemplateView
+import json
 
 @login_required
 def profile_add_view(request):
+    
     return render(request, 'accounts/add.html')
 
 class create_account(TemplateView):
@@ -37,5 +39,6 @@ class create_account(TemplateView):
         user_model.date_joined = timezone.now()
         user_model.save()
         message = {'status':'False','message': 'Excelente! Datos ingresados satisfactoriamente.'}
-        data = serializers.serialize( 'json', message, fields=( 'status', 'message' ), ensure_ascii=False )
-        return HttpResponse(data, mimetype='application/json')
+        #data = serializers.serialize( 'json', message, fields=( 'status', 'message' ), ensure_ascii=False )
+        data = json.dumps(message)
+        return HttpResponse(data, content_type =  "application/json")
