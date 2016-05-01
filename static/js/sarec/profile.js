@@ -5,6 +5,7 @@ $(document).ready(function() {
 
     $(document).on( 'submit' , "form[name='form-new-account']" ,function () {
         var formData = new FormData( $( "form[name='form-new-account']" )[0] );
+        
         $.ajax({
             url : '/administrator/accounts/insert/',
             type : 'post',

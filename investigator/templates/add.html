@@ -17,9 +17,8 @@
 {% block content %}
     <div class="row">
       <div class="col-xs-12">
-        <form class="form-horizontal" method="post">
+        <form class="form-horizontal" name="form-nuevo-investigador" method="post">
           {% csrf_token %}
-
           <div class="form-group">
             <div class="col-xs-2 col-xs-offset-3">
               <label class="ace-file-input ace-file-multiple">
@@ -39,14 +38,14 @@
           <div class="form-group">
             <label for="txtNombres" class="col-xs-3 control-label  no-padding-right">Nombres:</label>
             <div class="col-xs-9">
-              <input type="text" id="txtNombres" class="col-xs-10 col-sm-5" placeholder="Nombres">
+              <input type="text" id="txtNombres" name="txtNombres" class="col-xs-10 col-sm-5" placeholder="Nombres" required>
             </div>
           </div>
 
           <div class="form-group">
             <label for="txtApellidos" class="col-xs-3 control-label  no-padding-right">Apellidos:</label>
             <div class="col-xs-9">
-              <input type="text" id="txtApellidos" class="col-xs-10 col-sm-5" placeholder="Apellidos">
+              <input type="text" id="txtApellidos" name="txtApellidos" class="col-xs-10 col-sm-5" placeholder="Apellidos">
             </div>
           </div>
 
@@ -55,7 +54,7 @@
             <div class="col-xs-9">
               <div class="input-medium">
                 <div class="input-group">
-                  <input type="text" id="txtFechaNac" class="input-medium date-picker" date-format="dd-mm-yyyy" placeholder="dd-mm-yyyy">
+                  <input type="text" id="txtFechaNac" name = "txtFechaNac" class="input-medium date-picker" date-format="dd-mm-yyyy" placeholder="dd-mm-yyyy">
                   <span class="input-group-addon">
                     <i class="ace-icon fa fa-calendar"></i>
                   </span>
@@ -68,7 +67,7 @@
             <label for="txtCorreo" class="col-xs-3 control-label  no-padding-right">Correo:</label>
             <div class="col-xs-9">
               <span class="input-icon input-icon-right">
-                <input type="email" id="txtCorreo" class="input-large" placeholder="usuario@gmail.com">
+                <input type="email" id="txtCorreo" name="txtCorreo" class="input-large" placeholder="usuario@gmail.com">
                 <i class="ace-icon fa fa-envelope"></i>
               </span>
 
@@ -79,7 +78,7 @@
             <label for="txtTelefono" class="col-xs-3 control-label  no-padding-right">Teléfono:</label>
             <div class="col-xs-9">
               <span class="input-icon input-icon-right">
-                <input type="text" id="txtTelefono" class="input-medium input-mask-phone">
+                <input type="text" id="txtTelefono" name="txtTelefono" class="input-medium input-mask-phone">
                 <i class="ace-icon fa fa-phone fa-flip-horizontal"></i>
               </span>
 
@@ -89,14 +88,14 @@
           <div class="form-group">
             <label for="txtDireccion" class="col-xs-3 control-label  no-padding-right">Dirección:</label>
             <div class="col-xs-9">
-              <textarea id="txtDireccion" class="col-xs-5"></textarea>
+              <textarea id="txtDireccion" name="txtDireccion" class="col-xs-5"></textarea>
             </div>
           </div>
 
           <div class="form-group">
             <label for="txtDepartamento" class="col-xs-3 control-label  no-padding-right">Departamento:</label>
             <div class="col-xs-9">
-              <input type="text" id="txtDepartamento" class="col-xs-10 col-sm-5">
+              <input type="text" id="txtDepartamento" name="txtDepartamento" class="col-xs-10 col-sm-5">
             </div>
           </div>
 
@@ -104,7 +103,7 @@
             <label for="txtFacebook" class="col-xs-3 control-label  no-padding-right">Facebook:</label>
             <div class="col-xs-9">
               <span class="input-icon">
-                <input type="text" id="txtFacebook">
+                <input type="text" id="txtFacebook" name="txtFacebook">
                 <i class="ace-icon fa fa-facebook blue"></i>
               </span>
 
@@ -115,7 +114,7 @@
             <label for="txtTwitter" class="col-xs-3 control-label  no-padding-right">Twitter:</label>
             <div class="col-xs-9">
               <span class="input-icon">
-                <input type="text" id="txtTwitter">
+                <input type="text" id="txtTwitter" name="txtTwitter">
                 <i class="ace-icon fa fa-twitter light-blue"></i>
               </span>
 
@@ -126,7 +125,7 @@
             <label for="txtGooglePlus" class="col-xs-3 control-label  no-padding-right">Google +:</label>
             <div class="col-xs-9">
               <span class="input-icon">
-                <input type="text" id="txtGooglePlus">
+                <input type="text" id="txtGooglePlus" name="txtGooglePlus">
                 <i class="ace-icon fa fa-google-plus red"></i>
               </span>
 
@@ -154,5 +153,5 @@
 {% endblock content %}
 
 {% block script %}
-    <script type="text/javascript" src="{% static 'js/sarec/investigadores.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/sarec/investigator.js' %}"></script>
 {% endblock script %}
