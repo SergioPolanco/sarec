@@ -11,6 +11,10 @@ $(document).ready(function() {
       }
     });
 
+    $( document ).on('change', "input[type='file']", function(e) {
+      mostrarImagen(this);
+    });
+
     $(document).on( 'submit' , "form[name='form-new-account']" ,function () {
       var formData = new FormData( $( "form[name='form-new-account']" )[0] );
 
@@ -51,7 +55,8 @@ $(document).ready(function() {
       }
 
       return false;
-  });
+    });
+
 });
 
 function validateblank() {
@@ -81,4 +86,14 @@ function lengthpassword() {
         $(" input[type='password'] ").parent().parent().addClass('has-error');
     }
     return validate;
+}
+
+function mostrarImagen(input) {
+ if (input.files && input.files[0]) {
+  var reader = new FileReader();
+  reader.onload = function (e) {
+   $( '#avatar' ).attr('src', e.target.result);
+  }
+  reader.readAsDataURL(input.files[0]);
+ }
 }

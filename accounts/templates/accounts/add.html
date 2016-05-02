@@ -42,7 +42,15 @@
                             <h4 class="header blue bolder smaller">General</h4>
                             <div class="row">
                                 <div class="col-xs-12 col-sm-4">
-                                    <label class="ace-file-input ace-file-multiple"><input type="file"><span class="ace-file-container" data-title="Cambiar Imagen"><span class="ace-file-name" data-title="No File ..."><i class=" ace-icon ace-icon fa fa-picture-o"></i></span></span><a class="remove" href="#"><i class=" ace-icon fa fa-times"></i></a></label>
+                                  <div class="center-block">
+                                    <label class="ace-file-input ace-file-multiple">
+                                      <input type="file">
+                                      <span class="profile-picture center-block" style="display:block!important;border: 0px solid #CCC;box-shadow: 1px 1px 1px 1px rgba(0,0,0,.15);">
+                                        <img id="avatar" class="center-block editable img-responsive editable-click editable-empty" src="{% static 'img/image.png' %}" style="max-height:160px;"></img>
+                                      </span>
+                                    </label>
+                                    <div class="space-4"></div>
+                                  </div>
                                 </div>
                                 <div class="vspace-12-sm"></div>
                                 <div class="col-xs-12 col-sm-8">
