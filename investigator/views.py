@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
-import json
+import json, traceback
 from .models import Investigator
 from django.http import HttpResponse
 
@@ -27,6 +27,7 @@ class createInvestigator(TemplateView):
             twitter = request.POST.get('txtTwitter')
             googlePlus = request.POST.get('txtGooglePlus')
 
+
             nuevo_invetigador.nombres = nombres
             nuevo_invetigador.apellidos = apellidos
             nuevo_invetigador.fechaNac = fechaNac
@@ -42,6 +43,6 @@ class createInvestigator(TemplateView):
             return HttpResponse(data, content_type =  "application/json")
         except Exception as e:
 
-            message = {'status':'False','message': sys.exc_info()[0]}
+            message = {'status':'False','message': str(traceback.format_exc())}
             data = json.dumps(message)
             return HttpResponse(data, content_type =  "application/json")
