@@ -9,10 +9,10 @@
 {% block breadcrumbs %} Cuentas de Usuario {% endblock breadcrumbs %}
 
 {% block titlepage %}Usuarios{% endblock titlepage %}
-{% block description %}Agregar Usuarios{% endblock description %}
+{% block description %}Editar Usuarios{% endblock description %}
 
 {% block content %}
-    <div class="row">
+    <div class="row hide">
         <div class="col-xs-12">
             <div class="clearfix">
                 <div class="pull-left alert alert-success no-margin">
@@ -140,10 +140,23 @@
             </form>
         </div>
     </div>
+
+    <div class="row">
+        <div class="modal-header no-padding">
+            <div class="table-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <span class="white">&times;</span>
+                </button>
+                Results for "Latest Registered Domains
+            </div>
+        </div>
+    </div>
 {% endblock content %}
 
 {% block script %}
+    <script type="text/javascript" src="{% static 'js/sarec/jquery.dataTables.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/sarec/jquery.dataTables.bootstrap.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/sarec/maskedinput.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/sarec/jquery.gritter.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/sarec/createprofile.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/sarec/modifyprofile.js' %}"></script>
 {% endblock script %}

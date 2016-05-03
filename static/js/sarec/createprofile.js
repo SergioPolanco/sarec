@@ -11,19 +11,46 @@ $(document).ready(function() {
       }
     });
 
+    $( " button[name='reset'] " ).click( function() {
+        $( '.has-error' ).removeClass( 'has-error' );
+        $( '#avatar' ).prop( 'src','/static/img/image.png' );
+    });
+
     $( document ).on('change', "input[type='file']", function(e) {
-      mostrarImagen(this);
+        mostrarImagen(this);
     });
 
     $(document).on( 'submit' , "form[name='form-new-account']" ,function () {
+        $( '.load' ).removeClass( 'hide' );
       var formData = new FormData( $( "form[name='form-new-account']" )[0] );
 
       if( validateblank() ) {
-        $( 'div#message' ).empty().append('<div id="alert" class="alert alert-warning no-margin-bottom"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong>Error!</strong> Aun existen campos requeridos sin completar.</div>');
+          $.gritter.removeAll();
+          var unique_id = $.gritter.add({
+              title: 'Advertencia!',
+              text: 'Error!!! Aun existen campos requeridos sin completar.',
+              sticky: true,
+              time: '',
+              class_name: 'gritter-warning gritter-center'
+          });
       } else if( validatepassword() ) {
-        $( 'div#message' ).empty().append('<div id="alert" class="alert alert-warning no-margin-bottom"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong>Error!</strong> Los campos de contraseñas no coinciden.</div>');
+          $.gritter.removeAll();
+          var unique_id = $.gritter.add({
+              title: 'Advertencia!',
+              text: 'Error!!! Los campos de contraseñas no coinciden.',
+              sticky: true,
+              time: '',
+              class_name: 'gritter-warning gritter-center'
+          });
       } else if( lengthpassword() ){
-        $( 'div#message' ).empty().append('<div id="alert" class="alert alert-warning no-margin-bottom"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong>Error!</strong> La longitud de la contraseña, debe ser mayor a 8 caracteres.</div>');
+          $.gritter.removeAll();
+          var unique_id = $.gritter.add({
+              title: 'Advertencia!',
+              text: 'Error!!! La longitud de la contraseña, debe ser mayor a 8 caracteres.',
+              sticky: true,
+              time: '',
+              class_name: 'gritter-warning gritter-center'
+          });
       } else {
         $.ajax({
             url : '/administrator/accounts/insert/',
@@ -34,13 +61,28 @@ $(document).ready(function() {
             processData: false,
             success: function(data) {
               if( data.status === 'False' ) {
-                $( 'div#message' ).empty().append('<div id="alert" class="alert alert-danger no-margin-bottom"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong>Error!</strong> '+ data.message +'</div>');
+                  $.gritter.removeAll();
+                  var unique_id = $.gritter.add({
+                      title: 'Advertencia!',
+                      text: 'Error!!! '+ data.message +'',
+                      sticky: true,
+                      time: '',
+                      class_name: 'gritter-error gritter-center'
+                  });
                 if( 'Lo sentimos, este nombre de usuario ya ha siso registrado, por favor seleccione otro...' === data.message ){
                   $( "input[name='username']" ).parent().parent().addClass('has-error');
                 }
               } else if( data.status === 'True' ) {
-                $( "form[name='form-new-account']" )[0].reset();
-                $( 'div#message' ).empty().append('<div id="alert" class="alert alert-success no-margin-bottom"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong>Excelente!</strong> '+ data.message +'</div>');
+                  cleardata();
+                  /*$( "form[name='form-new-account']" )[0].reset();*/
+                  $.gritter.removeAll();
+                  var unique_id = $.gritter.add({
+                    title: 'Mensaje!',
+                    text: 'Excelente!!! '+ data.message +'',
+                    sticky: true,
+                    time: '',
+                    class_name: 'gritter-success gritter-center'
+                });
               }
             },
             error: function (XMLHttpRequest, estado, errorS) {
@@ -53,7 +95,7 @@ $(document).ready(function() {
             }
         });
       }
-
+      $( '.load' ).addClass( 'hide' );
       return false;
     });
 
@@ -88,6 +130,12 @@ function lengthpassword() {
     return validate;
 }
 
+function cleardata() {
+    $( '.has-error' ).removeClass( 'has-error' );
+    $( '#avatar' ).prop( 'src','/static/img/image.png' );
+    $fileupload = $( "input[type='file']" );
+    $fileupload.replaceWith($fileupload.clone(true));
+}
 function mostrarImagen(input) {
  if (input.files && input.files[0]) {
   var reader = new FileReader();
