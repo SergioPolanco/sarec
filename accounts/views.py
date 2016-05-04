@@ -94,23 +94,23 @@ class modify_account(TemplateView):
             return HttpResponse(data, content_type =  "application/json")
 
         try:
-            if not User.objects.get(username = username, id=row_id):
-                message = {'status':'False','message': 'Lo sentimos, este nombre de usuario no ha sido encontrado...'}
-                data = json.dumps(message)
-                return HttpResponse(data, content_type =  "application/json")
-        except:
-            message = {'status':'False','message': str(traceback.format_exc())}
-            data = json.dumps(message)
-            return HttpResponse(data, content_type =  "application/json")
+           user_model = User.objects.get(username = username, id=row_id)
+        except User.DoesNotExist:
+           message = {'status':'False','message': 'Lo sentimos, este nombre de usuario no ha sido encontrado...'}
+           data = json.dumps(message)
+           return HttpResponse(data, content_type =  "application/json")
 
         try:
-            user_model = User.objects.get(username = username, id=row_id)
             user_model.email = email
             user_model.first_name = firstname
             user_model.last_name = lastname
             user_model.is_superuser = admin
             user_model.is_active = active
             user_model.is_staff = admin
+
+            if newpassword == confirmpassword and newpassword:
+                user_model.set_password( newpassword )
+
             user_model.save()
             message = {'status':'True','message': 'Datos modificados satisfactoriamente.'}
             data = json.dumps(message)
