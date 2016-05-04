@@ -77,6 +77,7 @@ class modify_account(TemplateView):
 
     def post(self, request, *args, **kwargs):
         try:
+            row_id = int(request.POST.get('id'))
             username = request.POST.get('username')
             firstname = request.POST.get('firstname')
             lastname = request.POST.get('lastname')
@@ -86,14 +87,15 @@ class modify_account(TemplateView):
             newpassword = request.POST.get('newpassword')
             confirmpassword = request.POST.get('confirmpassword')
             photo = request.FILES.get('avatar')
+            print 'Este es ' + str(row_id)
         except:
             message = {'status':'False','message': str(traceback.format_exc())}
             data = json.dumps(message)
             return HttpResponse(data, content_type =  "application/json")
 
         try:
-            if User.objects.filter(username=username):
-                message = {'status':'False','message': 'Lo sentimos, este nombre de usuario ya ha siso registrado, por favor seleccione otro...'}
+            if not User.objects.get(username = username, id=row_id):
+                message = {'status':'False','message': 'Lo sentimos, este nombre de usuario no ha sido encontrado...'}
                 data = json.dumps(message)
                 return HttpResponse(data, content_type =  "application/json")
         except:
@@ -102,20 +104,15 @@ class modify_account(TemplateView):
             return HttpResponse(data, content_type =  "application/json")
 
         try:
-            user_model = User.objects.create_user(username=username, password=newpassword)
+            user_model = User.objects.get(username = username, id=row_id)
             user_model.email = email
             user_model.first_name = firstname
             user_model.last_name = lastname
             user_model.is_superuser = admin
             user_model.is_active = active
             user_model.is_staff = admin
-            user_model.date_joined = timezone.now()
             user_model.save()
-            user_profile = UserProfile()
-            user_profile.user = user_model
-            user_profile.photo = photo
-            user_profile.save()
-            message = {'status':'True','message': 'Datos ingresados satisfactoriamente.'}
+            message = {'status':'True','message': 'Datos modificados satisfactoriamente.'}
             data = json.dumps(message)
             return HttpResponse(data, content_type =  "application/json")
         except:

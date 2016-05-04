@@ -11,6 +11,14 @@ $(document).ready(function() {
       }
     });
 
+    $( " input[type='text'], input[type='email'], input[type='password'] " ).on( 'input' , function() {
+      if( $( this ).val() === '' ) {
+        $( this ).parent().parent().addClass('has-error');
+      } else {
+        $( this ).parent().parent().removeClass('has-error');
+      }
+    });
+
     $( " button[name='reset'] " ).click( function() {
         $( '.has-error' ).removeClass( 'has-error' );
         $( '#avatar' ).prop( 'src','/static/img/image.png' );
@@ -74,7 +82,7 @@ $(document).ready(function() {
                 }
               } else if( data.status === 'True' ) {
                   cleardata();
-                  /*$( "form[name='form-new-account']" )[0].reset();*/
+                  $( "form[name='form-new-account']" )[0].reset();
                   $.gritter.removeAll();
                   var unique_id = $.gritter.add({
                     title: 'Mensaje!',
