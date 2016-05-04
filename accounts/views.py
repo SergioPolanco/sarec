@@ -19,7 +19,9 @@ def profile_add_view(request):
 
 @login_required
 def profile_modify_view(request):
-    return render(request, 'accounts/modify.html')
+    user_list = User.objects.all()
+    context = {'user_list': user_list}
+    return render(request, 'accounts/modify.html', context)
 
 class create_account(TemplateView):
 
