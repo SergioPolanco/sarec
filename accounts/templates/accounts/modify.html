@@ -152,6 +152,7 @@
                         <thead>
                             <tr role="row">
                                 <th class="center sorting_disabled" rowspan="1" colspan="1" aria-label=""></th>
+                                <th class="sorting hide" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Domain: activate to sort column ascending">Id</th>
                                 <th class="sorting" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Domain: activate to sort column ascending">Usuario</th>
                                 <th class="sorting" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending">Nombre</th>
                                 <th class="hidden-480 sorting" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Clicks: activate to sort column ascending">Apellido</th>
@@ -160,17 +161,21 @@
                                     Email
                                 </th>
                                 <th class="hidden-480 sorting" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending">Estatus</th>
+                                <th class="sorting_disabled hide" rowspan="1" colspan="1" aria-label=""></th>
                                 <th class="sorting_disabled" rowspan="1" colspan="1" aria-label=""></th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for user in user_list %}
-                                <tr role="row" class="odd">
+                                <tr role="row" class="odd" name="{{ user.id }}">
                                     <td class="center">
                                         <label class="position-relative">
                                             <input type="checkbox" class="ace">
                                             <span class="lbl"></span>
                                         </label>
+                                    </td>
+                                    <td class="hide">
+                                        {{ user.id }}
                                     </td>
                                     <td>
                                         {{ user.username }}
@@ -188,7 +193,13 @@
                                         {% else %}
                                             <span class="label label-sm label-warning arrowed arrowed-righ">Inactivo</span>
                                         {% endif %}
-                                        <!--<span class="label label-sm label-warning">Expiring</span>-->
+                                    </td>
+                                    <td class="hide">
+                                        {% if user.is_superuser == True %}
+                                            <span class="label label-sm label-info arrowed arrowed-righ">Activo</span>
+                                        {% else %}
+                                            <span class="label label-sm label-warning arrowed arrowed-righ">Inactivo</span>
+                                        {% endif %}
                                     </td>
                                     <td>
                                         <div class="hidden-sm hidden-xs action-buttons">
@@ -231,9 +242,13 @@
             </div>
         </div>
     </div>
+    <div id="dialog-message" class="hide">
+
+    </div>
 {% endblock content %}
 
 {% block script %}
+    <script type="text/javascript" src="{% static 'js/sarec/jquery-ui.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/sarec/jquery.dataTables.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/sarec/jquery.dataTables.bootstrap.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/sarec/maskedinput.min.js' %}"></script>
