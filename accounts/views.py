@@ -35,7 +35,7 @@ class create_account(TemplateView):
             active = bool(request.POST.get('active'))
             newpassword = request.POST.get('newpassword')
             confirmpassword = request.POST.get('confirmpassword')
-            photo = request.FILES.get('avatar')
+            photo = request.FILES.get('avatar', False)
         except:
             message = {'status':'False','message': str(traceback.format_exc())}
             data = json.dumps(message)
