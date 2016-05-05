@@ -3,11 +3,9 @@ $(document).ready(function() {
     $( "[href='/administrator/accounts/modify/']" ).parent().addClass('active').parent().addClass('open');
     $( "[href='/administrator/accounts/modify/']" ).parent().parent().parent().addClass('active open hsub');
 
-    var oTable1 = $('#sample-table-2').dataTable( {
+    $('#sample-table-2').dataTable( {
         bAutoWidth: false,
-        "aoColumns": [
-          { "bSortable": false },
-          null, null,null, null, null, null,null,
+        "aoColumns": [ { "bSortable": false }, null, null,null, null, null, null,null,null,
           { "bSortable": false }
         ],
         "aaSorting": [],
@@ -38,7 +36,6 @@ $(document).ready(function() {
     }));
 
     $( document ).on( 'click', 'i.fa-search-plus.bigger-130', function(e) {
-
         $( "#dialog-message" ).append( '<form name="FormPost" id="FrmGrid_grid-table" class="FormGrid" onsubmit="return false;" style="width:auto;overflow:auto;position:relative;height:auto;"> <table id="TblGrid_grid-table" class="EditTable" cellspacing="0" cellpadding="0" border="0" style="width:100%;"> <tbody> <tr rowpos="1" class="FormData" id="tr_id" style="border-bottom: 1px dotted #E8E8E8; width:100%;"> <td class="CaptionTD">ID</td><td class="DataTD">&nbsp; <input type="text" id="td_id" name="td_id" role="textbox" class="FormElement ui-widget-content ui-corner-all" style="margin-bottom:5px;margin-top:5px;"> </td></tr><tr rowpos="2" class="FormData" id="tr_username" style="border-bottom: 1px dotted #E8E8E8; width:100%;"> <td class="CaptionTD">Usuario</td><td class="DataTD">&nbsp; <input type="text" id="td_username" readonly name="td_username" role="textbox" class="FormElement ui-widget-content ui-corner-all" style="margin-bottom:5px;margin-top:5px;"> </td></tr><tr rowpos="2" class="FormData" id="tr_first_name" style="border-bottom: 1px dotted #E8E8E8; width:100%;"> <td class="CaptionTD">Nombre</td><td class="DataTD">&nbsp; <input type="text" id="td_first_name" readonly name="td_first_name" role="textbox" class="FormElement ui-widget-content ui-corner-all" style="margin-bottom:5px;margin-top:5px;"> </td></tr><tr rowpos="2" class="FormData" id="tr_last_name" style="border-bottom: 1px dotted #E8E8E8; width:100%;"> <td class="CaptionTD">Apellido</td><td class="DataTD">&nbsp; <input type="text" id="td_last_name" readonly name="td_last_name" role="textbox" class="FormElement ui-widget-content ui-corner-all" style="margin-bottom:5px;margin-top:5px;"> </td></tr><tr rowpos="2" class="FormData" id="tr_email" style="border-bottom: 1px dotted #E8E8E8; width:100%;"> <td class="CaptionTD">Correo</td><td class="DataTD">&nbsp; <input type="text" id="td_email" readonly name="td_email" role="textbox" class="FormElement ui-widget-content ui-corner-all" style="margin-bottom:5px;margin-top:5px;"> </td></tr><tr rowpos="2" class="FormData" id="tr_is_active" style="border-bottom: 1px dotted #E8E8E8; width:100%;"> <td class="CaptionTD">Activo</td><td class="DataTD">&nbsp; <input type="checkbox" value="Yes" offval="No" id="is_active" name="is_active" role="checkbox" class="FormElement ace ace-switch ace-switch-5"> <span class="lbl" style="margin-bottom:2px;margin-top:5px;"></span> </td></tr><tr rowpos="2" class="FormData" id="tr_is_admin" style="border-bottom: 1px dotted #E8E8E8; width:100%;"> <td class="CaptionTD">Administrator</td><td class="DataTD">&nbsp; <input type="checkbox" value="Yes" offval="No" id="is_admin" name="is_admin" role="checkbox" class="FormElement ace ace-switch ace-switch-5"> <span class="lbl" style="margin-bottom:2px;margin-top:5px;"></span> </td></tr></tbody> </table> </form>' );
 
         $( 'input[name="td_username"]' ).val( $.trim($( $( this ).parent().parent().parent().parent().children(":nth-child(3)") ).text()) );
@@ -53,6 +50,7 @@ $(document).ready(function() {
         }
 
         e.preventDefault();
+
         var dialog = $( "#dialog-message" ).removeClass('hide').dialog({
             modal: true,
             title: "<div class='widget-header widget-header-small'><h4 class='smaller'><i class='ace-icon fa fa-check'></i> Datos del Usuario</h4></div>",
@@ -70,6 +68,7 @@ $(document).ready(function() {
                 $( '#dialog-message' ).empty().addClass( 'hide' );
             }
         });
+
     });
 
     $( document ).on( 'click', 'i.fa-search-plus.bigger-120', function(e) {
@@ -105,6 +104,7 @@ $(document).ready(function() {
                 $( '#dialog-message' ).empty().addClass( 'hide' );
             }
         });
+
     });
 
     $( document ).on( 'click', 'i.fa-pencil.bigger-130', function(e) {
@@ -114,15 +114,16 @@ $(document).ready(function() {
         $( 'input[name="firstname"]' ).val( $.trim($( $( this ).parent().parent().parent().parent().children(":nth-child(4)") ).text()) );
         $( 'input[name="lastname"]' ).val( $.trim($( $( this ).parent().parent().parent().parent().children(":nth-child(5)") ).text()) );
         $( 'input[name="email"]' ).val( $.trim($( $( this ).parent().parent().parent().parent().children(":nth-child(6)") ).text()) );
+        $( '#avatarimage' ).prop( 'src', $.trim($( $( this ).parent().parent().parent().parent().children(":nth-child(9)") ).text()) );
         if( $.trim($( $( this ).parent().parent().parent().parent().children(":nth-child(7)") ).text()) == 'Activo') {
             $( 'input[name="active"]' ).prop( "checked", "true" );
         }
         if( $.trim($( $( this ).parent().parent().parent().parent().children(":nth-child(8)") ).text()) == 'Activo') {
             $( 'input[name="admin"]' ).prop( "checked", "true" );
         }
-
         $( '.form-modify' ).toggle( "slow" );
         $( '.form-search' ).toggle( "slow" );
+
     });
 
     $( document ).on('change', "input[type='file']", function(e) {
@@ -139,102 +140,96 @@ $(document).ready(function() {
 
     $(document).on( 'submit' , "form[name='form-new-account']" ,function () {
         $( '.load' ).removeClass( 'hide' );
-      var formData = new FormData( $( "form[name='form-new-account']" )[0] );
+        var formData = new FormData( $( "form[name='form-new-account']" )[0] );
 
-      if( validateblank() ) {
-          $.gritter.removeAll();
-          var unique_id = $.gritter.add({
-              title: 'Advertencia!',
-              text: 'Error!!! Aun existen campos requeridos sin completar.',
-              sticky: true,
-              time: '',
-              class_name: 'gritter-warning gritter-center'
-          });
-      } else if( validatepassword() ) {
-          $.gritter.removeAll();
-          var unique_id = $.gritter.add({
-              title: 'Advertencia!',
-              text: 'Error!!! Los campos de contraseñas no coinciden.',
-              sticky: true,
-              time: '',
-              class_name: 'gritter-warning gritter-center'
-          });
-      } else if( lengthpassword() ){
-          $.gritter.removeAll();
-          var unique_id = $.gritter.add({
-              title: 'Advertencia!',
-              text: 'Error!!! La longitud de la contraseña, debe ser mayor a 8 caracteres.',
-              sticky: true,
-              time: '',
-              class_name: 'gritter-warning gritter-center'
-          });
-      } else {
-        $.ajax({
-            url : '/administrator/accounts/update/',
-            type : 'post',
-            data : formData,
-            async : true,
-            contentType: false,
-            processData: false,
-            success: function(data) {
-              if( data.status === 'False' ) {
-                  $.gritter.removeAll();
-                  var unique_id = $.gritter.add({
-                      title: 'Advertencia!',
-                      text: 'Error!!! '+ data.message +'',
-                      sticky: true,
-                      time: '',
-                      class_name: 'gritter-error gritter-center'
-                  });
-              } else if( data.status === 'True' ) {
-
-                  $( '#sample-table-2 tbody tr[name=' + data.id + '] td:nth-child(4)' ).text( data.first_name );
-                  $( '#sample-table-2 tbody tr[name=' + data.id + '] td:nth-child(5)' ).text( data.last_name );
-                  $( '#sample-table-2 tbody tr[name=' + data.id + '] td:nth-child(6)' ).text( data.email );
-                  console.log( data.is_active.toString() );
-                  if( data.is_active.toString() == 'true' ) {
-                      $( '#sample-table-2 tbody tr[name=' + data.id + '] td:nth-child(7)' ).empty().append( '<span class="label label-sm label-info arrowed arrowed-righ">Activo</span>' );
-                  } else {
-                      $( '#sample-table-2 tbody tr[name=' + data.id + '] td:nth-child(7)' ).empty().append( '<span class="label label-sm label-warning arrowed arrowed-righ">Inactivo</span>' );
-                  }
-                  if( data.is_superuser.toString() == 'true' ) {
-                      $( '#sample-table-2 tbody tr[name=' + data.id + '] td:nth-child(8)' ).empty().append( '<span class="label label-sm label-info arrowed arrowed-righ">Activo</span>' );
-                  } else {
-                      $( '#sample-table-2 tbody tr[name=' + data.id + '] td:nth-child(8)' ).empty().append( '<span class="label label-sm label-warning arrowed arrowed-righ">Inactivo</span>' );
-                  }
-                  cleardata();
-                  $( "form[name='form-new-account']" )[0].reset();
-                  $.gritter.removeAll();
-                  var unique_id = $.gritter.add({
-                    title: 'Mensaje!',
-                    text: 'Excelente!!! '+ data.message +'',
-                    sticky: true,
-                    time: '',
-                    class_name: 'gritter-success gritter-center'
-                });
-                $( '.has-error' ).removeClass( 'has-error' );
-                $( '#avatar' ).prop( 'src','/static/img/image.png' );
-                $( "form[name='form-new-account']" )[0].reset();
-                $( '.form-modify' ).toggle( "slow" );
-                $( '.form-search' ).toggle( "slow" );
-
-              }
-            },
-            error: function (XMLHttpRequest, estado, errorS) {
-              var error = eval("(" + XMLHttpRequest.responseText + ")");
-              console.log(error.Message);
-              console.log(estado);
-              console.log(errorS);
-            },
-            complete: function (jqXHR, estado) {
-            }
-        });
-      }
-      $( '.load' ).addClass( 'hide' );
-      return false;
+        if( validateblank() ) {
+            NotificationWarning( 'Advertencia!', 'Error!!! Aun existen campos requeridos sin completar.' );
+        } else if( validatepassword() ) {
+            NotificationWarning( 'Advertencia!', 'Error!!! Los campos de contraseñas no coinciden.' );
+        } else if( lengthpassword() ){
+            NotificationWarning( 'Advertencia!', 'Error!!! La longitud de la contraseña, debe ser mayor a 8 caracteres.' );
+        } else {
+            $.ajax({
+                url : '/administrator/accounts/update/',
+                type : 'post',
+                data : formData,
+                async : true,
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    if( data.status === 'False' ) {
+                        NotificationError( 'Advertencia!', 'Error!!! '+ data.message +'' );
+                    } else if( data.status === 'True' ) {
+                        $( '#sample-table-2 tbody tr[name=' + data.id + '] td:nth-child(4)' ).text( data.first_name );
+                        $( '#sample-table-2 tbody tr[name=' + data.id + '] td:nth-child(5)' ).text( data.last_name );
+                        $( '#sample-table-2 tbody tr[name=' + data.id + '] td:nth-child(6)' ).text( data.email );
+                        if( data.photo ) {
+                            $( '#sample-table-2 tbody tr[name=' + data.id + '] td:nth-child(9)' ).text( data.photo );
+                        }
+                        if( data.is_active.toString() == 'true' ) {
+                            $( '#sample-table-2 tbody tr[name=' + data.id + '] td:nth-child(7)' ).empty().append( '<span class="label label-sm label-info arrowed arrowed-righ">Activo</span>' );
+                        } else {
+                            $( '#sample-table-2 tbody tr[name=' + data.id + '] td:nth-child(7)' ).empty().append( '<span class="label label-sm label-warning arrowed arrowed-righ">Inactivo</span>' );
+                        }
+                        if( data.is_superuser.toString() == 'true' ) {
+                            $( '#sample-table-2 tbody tr[name=' + data.id + '] td:nth-child(8)' ).empty().append( '<span class="label label-sm label-info arrowed arrowed-righ">Activo</span>' );
+                        } else {
+                            $( '#sample-table-2 tbody tr[name=' + data.id + '] td:nth-child(8)' ).empty().append( '<span class="label label-sm label-warning arrowed arrowed-righ">Inactivo</span>' );
+                        }
+                        cleardata();
+                        NotificationSuccess( 'Mensaje!', 'Excelente!!! '+ data.message +'' );
+                        $( '.form-modify' ).toggle( "slow" );
+                        $( '.form-search' ).toggle( "slow" );
+                    }
+                },
+                error: function (XMLHttpRequest, estado, errorS) {
+                    var error = eval("(" + XMLHttpRequest.responseText + ")");
+                    console.log(error.Message);
+                    console.log(estado);
+                    console.log(errorS);
+                },
+                complete: function (jqXHR, estado) {
+                }
+            });
+        }
+        $( '.load' ).addClass( 'hide' );
+        return false;
     });
 
 });
+
+function NotificationSuccess(title, message) {
+    $.gritter.removeAll();
+    var unique_id = $.gritter.add({
+        title: title,
+        text: message,
+        sticky: true,
+        time: '',
+        class_name: 'gritter-success gritter-center'
+    });
+}
+
+function NotificationWarning(title, message) {
+    $.gritter.removeAll();
+    var unique_id = $.gritter.add({
+        title: title,
+        text: message,
+        sticky: true,
+        time: '',
+        class_name: 'gritter-warning gritter-center'
+    });
+}
+
+function NotificationError(title, message) {
+    $.gritter.removeAll();
+    var unique_id = $.gritter.add({
+        title: title,
+        text: message,
+        sticky: true,
+        time: '',
+        class_name: 'gritter-error gritter-center'
+    });
+}
 
 
 function validateblank() {
@@ -268,17 +263,23 @@ function lengthpassword() {
 
 function cleardata() {
     $( '.has-error' ).removeClass( 'has-error' );
-    $( '#avatar' ).prop( 'src','/static/img/image.png' );
+    $( '#avatarimage' ).prop( 'src','/static/img/image.png' );
     $fileupload = $( "input[type='file']" );
     $fileupload.replaceWith($fileupload.clone(true));
+    $( " input[type='text'], input[type='email'], input[type='password'] " ).each( function(){
+        $( this ).val( '' );
+    });
+    $( " input[type='checkbox'] " ).each( function( i, item ){
+        this.checked = item.defaultChecked;
+    });
 }
 
 function mostrarImagen(input) {
- if (input.files && input.files[0]) {
-  var reader = new FileReader();
-  reader.onload = function (e) {
-   $( '#avatar' ).attr('src', e.target.result);
-  }
-  reader.readAsDataURL(input.files[0]);
- }
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $( '#avatarimage' ).attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
 }

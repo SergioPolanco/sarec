@@ -107,7 +107,11 @@
 
                         <li class="light-blue">
                             <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                                <img class="nav-user-photo" src="{% static 'img/avatar5.png' %}" alt="Jason's Photo" />
+                                {% if user.userprofile.photo == 'False' %}
+                                    <img class="nav-user-photo" src="{% static 'img/avatar5.png' %}" alt="Jason's Photo" />
+                                {% else %}
+                                    <img class="nav-user-photo" src="{{ MEDIA_URL }}{{ user.userprofile.photo }}" alt="Jason's Photo" />
+                                {% endif %}
                                 <span class="user-info">
                                     <small>Bienvenido,</small>
                                     {{ user.username }}
