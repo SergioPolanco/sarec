@@ -186,10 +186,22 @@ $(document).ready(function() {
                       time: '',
                       class_name: 'gritter-error gritter-center'
                   });
-                if( 'Lo sentimos, este nombre de usuario ya ha siso registrado, por favor seleccione otro...' === data.message ){
-                  $( "input[name='username']" ).parent().parent().addClass('has-error');
-                }
               } else if( data.status === 'True' ) {
+
+                  $( '#sample-table-2 tbody tr[name=' + data.id + '] td:nth-child(4)' ).text( data.first_name );
+                  $( '#sample-table-2 tbody tr[name=' + data.id + '] td:nth-child(5)' ).text( data.last_name );
+                  $( '#sample-table-2 tbody tr[name=' + data.id + '] td:nth-child(6)' ).text( data.email );
+                  console.log( data.is_active.toString() );
+                  if( data.is_active.toString() == 'true' ) {
+                      $( '#sample-table-2 tbody tr[name=' + data.id + '] td:nth-child(7)' ).empty().append( '<span class="label label-sm label-info arrowed arrowed-righ">Activo</span>' );
+                  } else {
+                      $( '#sample-table-2 tbody tr[name=' + data.id + '] td:nth-child(7)' ).empty().append( '<span class="label label-sm label-warning arrowed arrowed-righ">Inactivo</span>' );
+                  }
+                  if( data.is_superuser.toString() == 'true' ) {
+                      $( '#sample-table-2 tbody tr[name=' + data.id + '] td:nth-child(8)' ).empty().append( '<span class="label label-sm label-info arrowed arrowed-righ">Activo</span>' );
+                  } else {
+                      $( '#sample-table-2 tbody tr[name=' + data.id + '] td:nth-child(8)' ).empty().append( '<span class="label label-sm label-warning arrowed arrowed-righ">Inactivo</span>' );
+                  }
                   cleardata();
                   $( "form[name='form-new-account']" )[0].reset();
                   $.gritter.removeAll();
@@ -205,6 +217,7 @@ $(document).ready(function() {
                 $( "form[name='form-new-account']" )[0].reset();
                 $( '.form-modify' ).toggle( "slow" );
                 $( '.form-search' ).toggle( "slow" );
+
               }
             },
             error: function (XMLHttpRequest, estado, errorS) {
