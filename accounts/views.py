@@ -19,8 +19,8 @@ def profile_add_view(request):
 
 @login_required
 def profile_modify_view(request):
-    user_list = User.objects.all()
-    context = {'user_list': user_list}
+    user_list = User.objects.all().order_by('username')
+    context = { 'user_list': user_list }
     return render(request, 'accounts/modify.html', context)
 
 class create_account(TemplateView):
@@ -112,8 +112,16 @@ class modify_account(TemplateView):
                 user_model.set_password( newpassword )
 
             user_model.save()
-            message = {'status':'True','message': 'Datos modificados satisfactoriamente.'}
-            data = json.dumps(message)
+            response_data = {}
+            response_data['status'] = 'True'
+            response_data['message'] = 'Datos modificados satisfactoriamente.'
+            response_data['email'] = email
+            response_data['first_name'] = firstname
+            response_data['is_superuser'] = admin
+            response_data['is_active'] = active
+            response_data['last_name'] = lastname
+            response_data['id'] = row_id
+            data = json.dumps(response_data)
             return HttpResponse(data, content_type =  "application/json")
         except:
             message = {'status':'False','message': str(traceback.format_exc())}
