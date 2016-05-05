@@ -17,44 +17,42 @@
 {% block content %}
     <div class="row">
       <div class="col-xs-12">
-        <form class="form-horizontal" name="form-nuevo-investigador" method="post">
+        <form class="form-horizontal" id="form-nuevo-investigador" name="form-nuevo-investigador" method="post">
           {% csrf_token %}
           <div class="form-group">
-            <div class="col-xs-2 col-xs-offset-3">
-              <label class="ace-file-input ace-file-multiple">
-                <input type="file" id="boxImagen">
-                <span class="ace-file-container" data-title="Imagen de Perfil">
-                  <span class="ace-file-name" data-title="Vacio..">
-                    <i class="ace-icon ace-icon fa fa-picture-o"></i>
+            <div class="col-xs-4 col-xs-offset-3">
+              <div class="center-block">
+                <label class="ace-file-input ace-file-multiple">
+                  <input name="avatar" type="file">
+                  <span class="profile-picture center-block" style="display:block!important;border: 0px solid #CCC;box-shadow: 0px 0px 0px rgba(0,0,0,.15);">
+                    <img id="avatarimage" name="avatarimage" class="center-block editable img-responsive editable-click editable-empty" src="{% static 'img/image.png' %}" style="max-height:160px;"></img>
                   </span>
-                </span>
-                <a href="#" class="remove">
-                  <i class="ace-icon fa fa-times"></i>
-                </a>
-              </label>
+                </label>
+                <div class="space-4"></div>
+              </div>
             </div>
           </div>
 
-          <div class="form-group">
+          <div class="form-group" id="fgNombres">
             <label for="txtNombres" class="col-xs-3 control-label  no-padding-right">Nombres:</label>
             <div class="col-xs-9">
-              <input type="text" id="txtNombres" name="txtNombres" class="col-xs-10 col-sm-5" placeholder="Nombres" required>
+              <input type="text" id="txtNombres" name="txtNombres" class="col-xs-10 col-sm-5 requerid" placeholder="Nombres">
             </div>
           </div>
 
-          <div class="form-group">
+          <div class="form-group" id="fgApellidos">
             <label for="txtApellidos" class="col-xs-3 control-label  no-padding-right">Apellidos:</label>
             <div class="col-xs-9">
-              <input type="text" id="txtApellidos" name="txtApellidos" class="col-xs-10 col-sm-5" placeholder="Apellidos">
+              <input type="text" id="txtApellidos" name="txtApellidos" class="col-xs-10 col-sm-5 requerid" placeholder="Apellidos">
             </div>
           </div>
 
-          <div class="form-group">
+          <div class="form-group" id="fgFechaNac">
             <label for="txtFechaNac" class="col-xs-3 control-label  no-padding-right">Fecha de Nacimiento:</label>
             <div class="col-xs-9">
               <div class="input-medium">
                 <div class="input-group">
-                  <input type="text" id="txtFechaNac" name = "txtFechaNac" class="input-medium date-picker" date-format="dd-mm-yyyy" placeholder="dd-mm-yyyy">
+                  <input type="text" id="txtFechaNac" name = "txtFechaNac" class="input-medium date-picker requerid" date-format="dd-mm-yyyy" placeholder="dd-mm-yyyy">
                   <span class="input-group-addon">
                     <i class="ace-icon fa fa-calendar"></i>
                   </span>
@@ -63,39 +61,39 @@
             </div>
           </div>
 
-          <div class="form-group">
+          <div class="form-group" id="fgCorreo">
             <label for="txtCorreo" class="col-xs-3 control-label  no-padding-right">Correo:</label>
             <div class="col-xs-9">
               <span class="input-icon input-icon-right">
-                <input type="email" id="txtCorreo" name="txtCorreo" class="input-large" placeholder="usuario@gmail.com">
+                <input type="email" id="txtCorreo" name="txtCorreo" class="input-large requerid" placeholder="usuario@gmail.com">
                 <i class="ace-icon fa fa-envelope"></i>
               </span>
 
             </div>
           </div>
 
-          <div class="form-group">
+          <div class="form-group" id="fgTelefono">
             <label for="txtTelefono" class="col-xs-3 control-label  no-padding-right">Teléfono:</label>
             <div class="col-xs-9">
               <span class="input-icon input-icon-right">
-                <input type="text" id="txtTelefono" name="txtTelefono" class="input-medium input-mask-phone">
+                <input type="text" id="txtTelefono" name="txtTelefono" class="input-medium input-mask-phone requerid">
                 <i class="ace-icon fa fa-phone fa-flip-horizontal"></i>
               </span>
 
             </div>
           </div>
 
-          <div class="form-group">
+          <div class="form-group" id="fgDireccion">
             <label for="txtDireccion" class="col-xs-3 control-label  no-padding-right">Dirección:</label>
             <div class="col-xs-9">
-              <textarea id="txtDireccion" name="txtDireccion" class="col-xs-5"></textarea>
+              <textarea id="txtDireccion" name="txtDireccion requerid" class="col-xs-5"></textarea>
             </div>
           </div>
 
-          <div class="form-group">
+          <div class="form-group" id="fgDepartamento">
             <label for="txtDepartamento" class="col-xs-3 control-label  no-padding-right">Departamento:</label>
             <div class="col-xs-9">
-              <input type="text" id="txtDepartamento" name="txtDepartamento" class="col-xs-10 col-sm-5">
+              <input type="text" id="txtDepartamento" name="txtDepartamento" class="col-xs-10 col-sm-5 requerid">
             </div>
           </div>
 
@@ -140,7 +138,7 @@
                   Guardar
                 </button>
 
-                <button type="reset" class="btn" id="btnGuardar">
+                <button type="reset" class="btn" id="btnReiniciar">
                   <i class="ace-icon fa fa-undo bigger-110"></i>
                   Reiniciar
                 </button>
@@ -153,5 +151,7 @@
 {% endblock content %}
 
 {% block script %}
+    <script type="text/javascript" src="{% static 'js/sarec/maskedinput.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/sarec/jquery.gritter.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/sarec/investigator.js' %}"></script>
 {% endblock script %}
