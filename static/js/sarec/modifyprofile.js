@@ -5,7 +5,7 @@ $(document).ready(function() {
 
     $('#sample-table-2').dataTable( {
         bAutoWidth: false,
-        "aoColumns": [ { "bSortable": false }, null, null,null, null, null, null,null,null,
+        "aoColumns": [ { "bSortable": false }, null ,null, null,null, null, null, null,null,
           { "bSortable": false }
         ],
         "aaSorting": [],

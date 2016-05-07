@@ -4,6 +4,12 @@ function load(){
   $( "[href='/administrator/investigator/add/']" ).parent().addClass('active').parent().addClass('open');
   $( "[href='/administrator/investigator/add/']" ).parent().parent().parent().addClass('active open hsub');
 
+  $('.input-mask-phone').mask('(999) 9999-9999');
+  $('.date-picker').datepicker({
+					autoclose: true,
+					todayHighlight: true,
+          dateFormat: 'yy-mm-dd'
+				});
   $(document).on('click','#btnReiniciar', function(){
       $(".has-error").removeClass("has-error");
   });
@@ -25,7 +31,9 @@ function load(){
             contentType: false,
             processData: false,
             success: function(data) {
+
               NotificationSuccess( 'Mensaje!', 'Excelente!!! '+ data.message +'' );
+              limpiar();
             },
             error: function (XMLHttpRequest, estado, errorS) {
               var error = eval("(" + XMLHttpRequest.responseText + ")");

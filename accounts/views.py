@@ -116,6 +116,8 @@ class modify_account(TemplateView):
                 if newpassword == confirmpassword and newpassword:
                     user_model.set_password( newpassword )
 
+                user_model.save()
+
                 if photo:
                     try:
                         user_profile = UserProfile.objects.get(user_id = row_id)
@@ -123,12 +125,14 @@ class modify_account(TemplateView):
                         user_profile.save()
                         response_data['photo'] = '/media/' + str(user_profile.photo)
                     except UserProfile.DoesNotExist:
-                        pass
-
-                user_model.save()
+                        user_profile = UserProfile()
+                        user_profile.user = user_model
+                        user_profile.photo = photo
+                        user_profile.save()
+                        response_data['photo'] = '/media/' + str(user_profile.photo)
 
                 response_data['status'] = 'True'
-                response_data['message'] = 'Datos modificados satisfactoriamente.'
+                response_data['message'] = 'Datos modificados satisfactoriamente..'
                 response_data['email'] = email
                 response_data['first_name'] = firstname
                 response_data['is_superuser'] = admin
